@@ -1,5 +1,6 @@
 import numpy as np
 from scipy.stats import spearmanr
+import matplotlib.pyplot as plt
 
 def main():
 	similarity = np.array([7,7,9,1,8,3,9,5,12,15,14,2,12,11,4])
@@ -17,6 +18,19 @@ def main():
 
 	print("Spearman's rho:", rho)
 	print("P-value:", p_value)
+
+	plt.figure(figsize=(8, 6))
+	plt.scatter(similarity, attraction, color='purple', alpha=0.7, s=100, edgecolor='black')
+	plt.xlabel('Similarity')
+	plt.ylabel('Attraction')
+	plt.title('Scatterplot of Similarity vs. Attraction')
+	# Optionally, add a line of best fit if you're interested in the trend
+	m, b = np.polyfit(similarity, attraction, 1)
+	plt.plot(similarity, m*np.array(similarity) + b, color='darkorange', linestyle='--', linewidth=2, label='Trendline')
+
+	plt.legend()
+	plt.show()
+	
 
 def spearman_rho(X,Y):
 	difference = X - Y
@@ -45,4 +59,5 @@ Difference Squared:
 my rho 0.95
 Spearman's rho: 0.9496859179096786
 P-value: 6.334257697578373e-08
+
 """
