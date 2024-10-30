@@ -1,5 +1,6 @@
 import numpy as np
 from scipy.stats import chi2
+import matplotlib.pyplot as plt
 
 
 def main():
@@ -7,6 +8,7 @@ def main():
             [24, 28, 45],
             [23, 61, 19]
         ])
+    categories = ["Happy", "Reliable", "Physically Attractive"]
     df = 2
     cross_tabulation = add_row_and_column_totals(observed)
     expected = calculate_expected_values(cross_tabulation)
@@ -29,6 +31,31 @@ def main():
     print("Observed Row Percentages:\n", row_percentages)
     print("Expected Row Percentages:\n", expected_row_percentages)
 
+    # Define x positions for each category
+    x = np.arange(len(categories))
+    width = 0.35  # Width of the bars
+
+    # Create the plot
+    fig, ax = plt.subplots(figsize=(10, 6))
+
+    # # Plot bars for Male and Female using the NumPy array directly
+    ax.bar(x - width/2, observed[0], width, label='Male', color='skyblue')
+    ax.bar(x + width/2, observed[1], width, label='Female', color='lightcoral')
+    # # Plot line for Male observed
+    # ax.plot(x, observed[0], marker='o', linestyle='-', color='blue', label='Male')
+
+    # # Plot line for Female observed
+    # ax.plot(x, observed[1], marker='o', linestyle='-', color='red', label='Female')
+
+    # Add labels, title, and customize ticks
+    ax.set_xlabel('Traits')
+    ax.set_ylabel('Frequency')
+    ax.set_title('Frequency of Traits by Gender')
+    ax.set_xticks(x)
+    ax.set_xticklabels(categories)
+    ax.legend()
+
+    plt.show()
 
 def add_row_and_column_totals(matrix):    
     # Calculate row sums and add as a new column
