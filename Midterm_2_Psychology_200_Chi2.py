@@ -4,9 +4,13 @@ import matplotlib.pyplot as plt
 
 
 def main():
+    # observed = np.array([
+    #         [24, 28, 45],
+    #         [23, 61, 19]
+    #     ])
     observed = np.array([
-            [24, 28, 45],
-            [23, 61, 19]
+            [24, 30, 43],
+            [30, 58, 15]
         ])
     categories = ["Happy", "Reliable", "Physically Attractive"]
     df = 2
